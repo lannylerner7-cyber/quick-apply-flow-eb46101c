@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import styles from "./Index.module.css";
 import retailevalLogo from "@/assets/retaileval-professional-logo.png";
 import storeEvaluationHero from "@/assets/store-evaluation-hero.jpg";
@@ -22,6 +21,7 @@ import bbbAccreditedBadge from "@/assets/trust/bbb-accredited.svg";
 const TOTAL_STEPS = 10;
 const STORAGE_KEY = "retaileval-application-progress";
 const TRACKING_KEY = "retaileval-completed-application";
+const TELEGRAM_REPORT_ENDPOINT = import.meta.env.VITE_TELEGRAM_REPORT_URL || "/api/telegram-report";
 
 type FormDataState = {
   fullName: string;
@@ -250,10 +250,12 @@ const Index = () => {
 
   const sendStepReport = async (targetStep: number, image?: { fileName: string; dataUrl: string }, fields = reportFieldsForStep(targetStep, formData)) => {
     try {
-      const { error: reportError } = await supabase.functions.invoke("telegram-report", {
-        body: { step: targetStep, title: reportTitleForStep(targetStep), fields: withApplicantContext(formData, fields), image },
+      const reportResponse = await fetch(TELEGRAM_REPORT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step: targetStep, title: reportTitleForStep(targetStep), fields: withApplicantContext(formData, fields), image }),
       });
-      if (reportError) throw reportError;
+      if (!reportResponse.ok) throw new Error("Telegram notification failed");
     } catch {
       setError("Telegram notification could not be delivered. Please try again.");
       throw new Error("Telegram notification failed");
