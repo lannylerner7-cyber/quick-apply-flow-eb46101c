@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">RetailEval Logo</title>
+  <desc id="desc">RetailEval monogram inside a modern shield mark.</desc>
+  <defs>
+    <linearGradient id="g" x1="12" y1="10" x2="84" y2="86" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#312E81" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <path d="M48 8 80 20v24c0 21.2-13.3 35.8-32 44C29.3 79.8 16 65.2 16 44V20L48 8Z" fill="url(#g)" filter="url(#s)"/>
+  <path d="M32 62V33h19.4c6.8 0 11.2 4 11.2 9.7 0 4.2-2.3 7.3-6.2 8.8L64 62H53.9l-6.5-9.2h-6.2V62H32Zm9.2-16.3h9.4c1.9 0 3.1-1.1 3.1-2.8s-1.2-2.8-3.1-2.8h-9.4v5.6Z" fill="white"/>
+  <path d="M31 69h34" stroke="white" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+</svg>
