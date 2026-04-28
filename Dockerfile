@@ -23,6 +23,6 @@ COPY --from=builder /app/dist ./dist
 EXPOSE 3333
 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -qO- http://127.0.0.1:3000/health || exit 1
+  CMD wget -qO- http://127.0.0.1:3333/health || exit 1
 
 CMD ["bun", "server/index.ts"]
