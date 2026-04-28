@@ -13,7 +13,7 @@ type TelegramReportBody = {
 };
 
 const distDir = join(process.cwd(), "dist");
-const port = Number(process.env.PORT || 8081);
+const port = Number(process.env.PORT || 8080);
 
 const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
